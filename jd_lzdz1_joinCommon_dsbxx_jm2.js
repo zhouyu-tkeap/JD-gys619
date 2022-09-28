@@ -1,16 +1,16 @@
 /*
-金秋钜惠 国庆狂欢季
+豪礼黄金周  智慧中国家
 */
-const $ = new Env("金秋钜惠 国庆狂欢季");
+const $ = new Env("豪礼黄金周  智慧中国家");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 const notify = $.isNode() ? require("./sendNotify") : "";
 let cookiesArr = [], cookie = "", message = "";
 let delayTime = process.env.opencard_delayTime ?? 4000;
 let ownCode = null;
 let authorCodeList = [
-  'feef6bafb73d4141be0233362d84e3b3',
+  'b36765ff7c1b4ec0b2396f23e4800c1a',
 ];
-let activityId = '50eee572444e4f0b81c3f57a344070fe'
+let activityId = 'e953480ca33446be8f1ab21bacda830a'
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item]);
