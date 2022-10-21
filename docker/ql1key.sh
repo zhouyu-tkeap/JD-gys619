@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 #2.11.3版本青龙一键安装并添加拉库任务
-#部署路径在/root/ql目录，容器名qinglong
 #端口5500
-#modify 2022-6-9
+#modify 2022-10-12
 
 Green="\033[32;1m"
 Red="\033[31m"
@@ -37,7 +36,9 @@ if [[ ! "$USER" == "root" ]]; then
   exit 1
 fi
 
-mkdir -p /root/ql && ql_path=/root/ql
+datav=/root/ql$(date +%Y%m%d)
+mkdir -p $datav  && ql_path=$datav
+
 
 ql_run() {
 if [  -z "$(docker ps -a | grep qinglong  2> /dev/null)" ]; then
@@ -133,7 +134,7 @@ else
     ing "开始添加6dylan6/jdpro拉库任务"
     sed -i 's/RepoFileExtensions.*/RepoFileExtensions=\"js py sh ts\"/g' $ql_path/data/config/config.sh
     if [ "$(grep -c "token" $ql_path/data/config/auth.json)" != 0 ]; then
-        docker exec -it qinglong /bin/bash -c "token=\$(cat /ql/config/auth.json | jq --raw-output .token) && curl -s -H 'Accept: application/json' -H \"Authorization: Bearer \$token\" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{\"name\":\"拉库\",\"command\":\"ql repo https://js.dayplus.xyz/https://github.com/6dylan6/jdpro.git jd_|jx_|jddj_ backUp  ^jd[^_]|USER|JD|function|sendNotify\",\"schedule\":\"45 7-23/2  * * *\"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1627380635389'"
+        docker exec -it qinglong /bin/bash -c "token=\$(cat /ql/config/auth.json | jq --raw-output .token) && curl -s -H 'Accept: application/json' -H \"Authorization: Bearer \$token\" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{\"name\":\"拉库\",\"command\":\"ql repo https://js.dayplus.xyz/https://github.com/6dylan6/jdpro.git \\\"jd_|jx_|jddj_\\\" \\\"backUp\\\"  \\\"^jd[^_]|USER|JD|function|sendNotify\\\"\",\"schedule\":\"45 7-23/2  * * *\"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1627380635389'"
     ok "已添加拉库任务，刷新浏览器后去执行拉库任务吧!"
     else
          error "未检测到 token，请访问web完成初始化并登陆进去后,在运行一次脚本"
@@ -155,5 +156,5 @@ ql_fix
 read -p "已初在浏览器始化并登陆青龙了?，那就按任意键继续！"
 add_repo
 sleep 2
-ok "已部署完成，2.11.3版本青龙，部署路径为/root/ql，容器名qinglong，访问地址http://ip:5500"
+ok "已部署完成，2.11.3版本青龙，数据保存路径为$datav，容器名qinglong，访问地址http://ip:5500"
 
