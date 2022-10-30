@@ -1,16 +1,16 @@
 /*
 金秋欢乐购 好物大联盟
 */
-const $ = new Env("金秋欢乐购 好物大联盟");
+const $ = new Env("11.11预售来袭 狂欢开抢");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 const notify = $.isNode() ? require("./sendNotify") : "";
 let cookiesArr = [], cookie = "", message = "";
 let delayTime = process.env.opencard_delayTime ?? 4000;
 let ownCode = null;
 let authorCodeList = [
-  '34ce06e47a2b463b93e8874c027adce4',
+  'c79dbd9aa53a4e9696d1981d4974894e'
 ];
-let activityId = '2a4dcb7dda9e47cf873beff950976219'
+let activityId = '79be7a7fd4834488b1125018f99771ae'
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item]);

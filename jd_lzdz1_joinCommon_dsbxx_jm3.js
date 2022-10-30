@@ -1,16 +1,16 @@
 /*
-金秋福利 好物推荐官
+金秋欢乐购 好物大联盟
 */
-const $ = new Env("金秋福利 好物推荐官");
+const $ = new Env("11.11引爆狂欢，跨店嗨购");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 const notify = $.isNode() ? require("./sendNotify") : "";
 let cookiesArr = [], cookie = "", message = "";
 let delayTime = process.env.opencard_delayTime ?? 4000;
 let ownCode = null;
 let authorCodeList = [
-  '4da15e8ba50d47b3bb30f819bab791e3',
+  'a8cf7c18ea5c435e968aaa55aa18194e',
 ];
-let activityId = 'ac6ad0e0fa5f43a78fcd2a7dca1f9f77'
+let activityId = 'c86847480940497881e7a00f66144724'
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item]);
